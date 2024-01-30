@@ -47,6 +47,7 @@ print(Variable.area())
 
 
 #ex4 Point class
+from ipaddress import summarize_address_range
 from math import *
 from math import sqrt
 class Point:
@@ -59,7 +60,7 @@ class Point:
     def show(self):
         print(self.x, self.y)
 
-    def move(self, new_x, new_y):
+    def move(self):
         new_x = self.x + self.x
         new_y = self.y + self.y
         self.x = new_x
@@ -72,7 +73,48 @@ class Point:
         self.other_y = other_y
         distance = sqrt((self.x - other_x)**2 + (self.y - other_y)**2)
         return distance
+variable = Point()
+variable.show()
+print(variable.move())
+variable.dist()
 
+
+#ex5 Bank account
+
+class Account():
+    def __init__(self, owner):
+        self.owner = owner
+        self.balance = 0
+    def deposit(self):
+        deposit = int(input())
+        self.balance += deposit
+        print("The deposit in the amount of:", deposit," ", "added to balance" )
+        print("The new balance = ", self.balance)
+
+    def withdraw(self):
+        newsum = int(input())
+        if newsum <= self.balance:
+            self.balance = self.balance - newsum
+        else:
+            print("The transaction can not be proceed, your sum is more than balance")
+
+k = Account(owner = "Nurtas")
+k.deposit()
+k.withdraw()
+
+
+#ex6 Prime numbers filter
+def is_prime(num):
+    if num < 2:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+numbers = list(map(int, input().split()))
+prime_numbers = list(filter(lambda x: is_prime(x), numbers))
+
+print(prime_numbers)
 
 
 
